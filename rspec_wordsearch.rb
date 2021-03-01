@@ -2,12 +2,6 @@
 
 require 'rspec'
 
-RSpec.describe "sampled" do 
-    it { expect(subject).to eq "sampled" }
-    
-end
-
-
 
 
 class WordSearch
@@ -56,20 +50,27 @@ end
 
     describe WordSearch do
 
-      it "finds the word cat in given array" do
+        
+        it "finds the word c in given array [a,z,c,t,v,a]" do
+        word_search = WordSearch.new(%w[a z c t v a], 'c')
+        expect(word_search.process).to eq('LEFT, LEFT, LEFT:c')
+      end
+      
+      it "finds the word cat in given array [a,z,c,t,v,a]" do
         word_search = WordSearch.new(%w[a z c t v a], 'cat')
         expect(word_search.process).to eq('LEFT, LEFT, LEFT:c, RIGHT, RIGHT:a, LEFT, LEFT:t')
       end
 
-      it "finds the word bat in given array" do
+      it "finds the word bat in given array [a,z,c,b,t,v,a]" do
         word_search = WordSearch.new(%w[a z c b t v a], 'bat')
         expect(word_search.process).to eq('LEFT, LEFT, LEFT, LEFT:b, LEFT, LEFT, LEFT:a, RIGHT, RIGHT:t')
       end
 
-      it "finds the word cat in given array" do
+      it "finds the word bata in given array [a,z,c,b,t,v,a]" do
         word_search = WordSearch.new(%w[a z c b t v a], 'bata')
         expect(word_search.process).to eq('LEFT, LEFT, LEFT, LEFT:b, LEFT, LEFT, LEFT:a, RIGHT, RIGHT:t, LEFT, LEFT:a')
       end
+      
     end
 
 RSpec::Core::Runner.run(["-f","d"])
