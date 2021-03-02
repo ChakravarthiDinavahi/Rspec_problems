@@ -1,4 +1,3 @@
-# Here your code !
 
 require 'rspec'
 
@@ -49,24 +48,33 @@ end
 
 
     describe WordSearch do
-
-        
-        it "finds the word c in given array [a,z,c,t,v,a]" do
+          
+        it "checks the left operation method with a given input" do
+        word_search = WordSearch.new(%w[a z c t v a], 'c')
+        expect(word_search.left_operation('c', 2)).to eq([["LEFT, LEFT, LEFT:c"]])
+      end
+      
+        it "checks the right operation method with a given input" do
+        word_search = WordSearch.new(%w[a z c t v a], 'c')
+        expect(word_search.right_operation('v', 1)).to eq([["RIGHT, RIGHT:v"]])
+      end
+      
+      it "Searches the letter c in given array [a,z,c,t,v,a]" do
         word_search = WordSearch.new(%w[a z c t v a], 'c')
         expect(word_search.process).to eq('LEFT, LEFT, LEFT:c')
       end
       
-      it "finds the word cat in given array [a,z,c,t,v,a]" do
+      it "Searches the word cat in given array [a,z,c,t,v,a]" do
         word_search = WordSearch.new(%w[a z c t v a], 'cat')
         expect(word_search.process).to eq('LEFT, LEFT, LEFT:c, RIGHT, RIGHT:a, LEFT, LEFT:t')
       end
 
-      it "finds the word bat in given array [a,z,c,b,t,v,a]" do
+      it "Searches the word bat in given array [a,z,c,b,t,v,a]" do
         word_search = WordSearch.new(%w[a z c b t v a], 'bat')
         expect(word_search.process).to eq('LEFT, LEFT, LEFT, LEFT:b, LEFT, LEFT, LEFT:a, RIGHT, RIGHT:t')
       end
 
-      it "finds the word bata in given array [a,z,c,b,t,v,a]" do
+      it "Searches the word bata in given array [a,z,c,b,t,v,a]" do
         word_search = WordSearch.new(%w[a z c b t v a], 'bata')
         expect(word_search.process).to eq('LEFT, LEFT, LEFT, LEFT:b, LEFT, LEFT, LEFT:a, RIGHT, RIGHT:t, LEFT, LEFT:a')
       end
